@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GuardFire - Sistema para Bombeiros</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+</head>
+<body>
+
+<header>
+    <h1>GuardFire</h1>
+    <p>Sistema Completo de Combate a Incêndios para Bombeiros</p>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="#monitoramento">Monitoramento</a></li>
+        <li><a href="#emergencias">Chamados de Emergência</a></li>
+        <li><a href="#relatorios">Relatórios</a></li>
+        <li><a href="#comunicacao">Comunicação</a></li>
+        <li><a href="#prevencao">Prevenção</a></li>
+    </ul>
+</nav>
+
+<section class="hero">
+    <h1>Apoio e Agilidade para Bombeiros</h1>
+</section>
+
+<!-- Seção de Monitoramento com o Mapa -->
+<div class="map-container">
+    <section id="map" style="height: 400px;"></section> <!-- Adicionei uma altura para o mapa -->
+</div>
+
+<!-- Seção de Depoimentos -->
+<section>
+    <h2>Depoimentos</h2>
+    <blockquote>
+        "A equipe foi incrível e salvou muitas vidas durante o incêndio." - Bombeiro João
+    </blockquote>
+    <blockquote>
+        "A agilidade da resposta foi fundamental para conter o incêndio." - Bombeiro Maria
+    </blockquote>
+</section>
+
+<!-- Seção de Notícias e Atualizações -->
+<section id="noticias">
+    <h2>Notícias e Atualizações</h2>
+    <p>Fique por dentro das últimas notícias relacionadas a incêndios e campanhas de conscientização.</p>
+</section>
+
+<!-- Seção de Contato -->
+<section id="contato">
+    <h2>Contato</h2>
+    <form>
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" required>
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" name="email" required>
+        <label for="mensagem">Mensagem:</label>
+        <textarea id="mensagem" name="mensagem" required></textarea>
+        <button type="submit">Enviar</button>
+    </form>
+</section>
+
+<!-- Seção de Informações Climáticas -->
+<section class="weather">
+    <h2>Informações Climáticas</h2>
+    <div class="weather-info" id="weather-info">
+        <img id="weather-icon" src="" alt="Condição do Tempo" style="display: none;">
+        <p>Carregando...</p>
+    </div>
+</section>
+
+<!-- Rodapé -->
+<footer>
+    <p>© 2024 GuardFire. Todos os direitos reservados.</p>
+    <p><a href="mailto:contato@guardfire.com">contato@guardfire.com</a></p>
+</footer>
+
+<!-- Scripts -->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="mapa_script.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>

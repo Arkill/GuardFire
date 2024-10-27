@@ -1,0 +1,107 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #a90202;
+}
+.container{
+    width: 100%;
+    display: flex;
+    max-width: 850px;
+    background: #ebf7f3;
+    border-radius: 2rem; /* Bordas arredondadas */
+    box-shadow: 0 4px 8px rgba(203, 95, 23, 0.81); /* Sombra mais pronunciada */
+    border: 1px solid #ff5e08; /* Adiciona uma borda sutil */
+}
+.login{
+    width: 400px;
+}
+form{
+    width: 250px;
+    margin: 60px auto;
+}
+h1{
+    margin: 20px;
+    text-align: center;
+    font-weight: bolder;
+    text-transform: uppercase;
+}
+
+p{
+    text-align: center;
+    font-weight: 700;
+    margin: 10px;
+}
+hr{
+    border-top: 2px solid #632e13;
+}
+.pic{
+    background-color:#e32417;
+    border-top-right-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+}
+.pic img{
+    width: 450px;
+    height: 100%;
+    
+}
+
+form label{
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 5px;
+}
+
+input{
+    width: 100%;
+    margin: 2px;
+    border: none;
+    outline: none;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid gray;
+}
+button{
+    border: none;
+    outline: none;
+    padding: 8px;
+    width: 252px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+    border-radius: 5px;
+    background: #631313;
+}
+button:hover{
+    background: rgb(214, 99, 64);
+}
+p{
+    margin: 20px;
+}
+a{
+    color: black;
+    text-decoration: none;
+}
+
+@media (max-width: 961px){
+    .pic {
+        display: none;
+    }
+
+    .container{
+        width: 70%;
+    }
+    .login {
+        margin: auto;
+    }
+}
+

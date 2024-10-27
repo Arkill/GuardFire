@@ -1,0 +1,276 @@
+/* Remover margens e espaçamentos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    width: 100%; /* Ocupa 100% da largura */
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #d6d1d187;
+    color: #333;
+}
+
+/* Estilo para o cabeçalho */
+header {
+    background-color: #a90202;
+    padding: 20px;
+    text-align: center;
+    color: white;
+}
+
+/* Barra de navegação */
+
+nav {
+    background-color: #171717;
+    text-align: center;
+    padding: 10px;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    display: inline-block;
+    margin: 0 15px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px;
+    display: inline-block;
+    position: relative; /* Necessário para o pseudo-elemento ::after funcionar corretamente */
+    transition: color 0.3s ease-in-out;
+}
+
+/* Traço abaixo dos links na navegação */
+nav a::after {
+    content: ""; /* Traço vazio, apenas visual */
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background-color: #df0000; /* Cor do traço */
+    transition: width 0.3s ease-in-out;
+}
+
+/* Expansão do traço ao passar o mouse */
+nav a:hover::after {
+    width: 100%; /* O traço se expande até o comprimento total do link */
+}
+
+nav a:hover {
+    color: #df0000; /* Cor do texto muda ao passar o mouse */
+}
+
+/* Seção Hero */
+.hero {
+    position: relative;
+    height: 400px; /* Ocupa a altura total da janela */
+    width: 100%; /* Ocupa toda a largura da janela */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-image: url('img/incendio.jpg');
+    background-size: cover; /* Garante que a imagem cubra toda a área */
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.9;
+}
+
+/* Conteúdo da seção Hero */
+.hero h1 {
+    position: relative;
+    z-index: 2;
+    font-size: 3rem;
+    color: white;
+}
+
+section {
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+section h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #171717;
+}
+
+.tools {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.tool {
+    background-color: white;
+    padding: 20px;
+    width: 30%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    border-radius: 8px;
+}
+
+.tool h3 {
+    color: #00bfa6;
+}
+
+.tool p {
+    margin-bottom: 15px;
+}
+
+footer {
+    background-color: #171717;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+#map {
+    height: 300px; 
+    width: 100%; 
+}
+
+.map-container {
+    background-color: white; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); 
+    overflow: hidden;
+    max-width: 600px;
+    margin: 30px auto; 
+    padding: 20px; 
+}
+
+#map {
+    height: 300px;
+    width: 100%;
+}
+
+/* Estilo do clima */
+.weather {
+    background-color: rgba(255, 255, 255, 0.9); 
+    border-radius: 8px; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    max-width: 600px; 
+    margin: 20px auto;
+    padding: 20px; 
+    text-align: center; 
+}
+
+.weather h2 {
+    font-size: 24px; 
+    margin-bottom: 20px; 
+}
+
+.weather-info {
+    font-size: 18px; 
+    line-height: 1.5; 
+}
+
+.weather-info strong {
+    color: #00bfa6; 
+}
+
+.weather-info .error {
+    color: red; 
+}
+
+.weather-info img {
+    width: 50px; 
+    height: auto;
+    margin-bottom: 10px; 
+}
+
+/* Estilos das novas seções */
+
+/* Seção de informações sobre incêndios */
+#informacoes {
+    background-color: #ffffff; /* Fundo branco */
+    border-radius: 10px; /* Bordas arredondadas */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra */
+    padding: 20px; /* Preenchimento interno */
+    margin: 20px auto; /* Margem */
+}
+
+/* Galeria de imagens */
+.image-gallery {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.image-gallery img {
+    width: 30%; /* Largura das imagens */
+    margin: 10px; /* Espaçamento entre as imagens */
+    border-radius: 8px; /* Bordas arredondadas */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra */
+}
+
+/* Seção de depoimentos */
+#depoimentos {
+    background-color: #ffffff; /* Fundo branco */
+    border-radius: 10px; /* Bordas arredondadas */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra */
+    padding: 20px; /* Preenchimento interno */
+    margin: 20px auto; /* Margem */
+}
+
+.depoimento {
+    margin: 15px 0; /* Espaçamento entre os depoimentos */
+    font-style: italic; /* Estilo itálico para depoimentos */
+}
+
+.depoimento strong {
+    display: block; /* Cada nome em uma linha separada */
+    margin-top: 5px; /* Margem acima do nome */
+    font-weight: bold; /* Nome em negrito */
+}
+
+
+/* Formulário de contato */
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+form label {
+    margin: 10px 0 5px;
+}
+
+form input, form textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+form button {
+    padding: 10px;
+    background-color: #bf4000;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #df0000;
+}
