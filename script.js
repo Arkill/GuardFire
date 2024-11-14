@@ -1,16 +1,21 @@
-// Inicialize o mapa
-const map = L.map('map').setView([-3.119, -60.021731], 10); // Coordenadas de Manaus
+// Inicialize o mapa com centro fixo em Manaus e zoom nível 14
+const map = L.map('map', {
+    center: [-3.119, -60.021731],  // Coordenadas de Manaus
+    zoom: 14, // Aumentando o nível de zoom para aproximar ainda mais de Manaus
+    scrollWheelZoom: true, // Permitir zoom com a roda do mouse
+    dragging: true, // Permitir o movimento do mapa
+    touchZoom: true, // Permitir zoom por toque
+    doubleClickZoom: true, // Permitir zoom por clique duplo
+    zoomControl: true, // Habilitar controles de zoom
+    maxZoom: 19, // Permitir até o nível máximo de zoom
+    minZoom: 12, // Não permitir zoom muito para fora de Manaus
+});
 
 // Adicione o layer do OpenStreetMap
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '© OpenStreetMap'
 }).addTo(map);
-
-// Adicione um marcador no mapa para Manaus
-L.marker([-3.119, -60.021731]).addTo(map)
-    .bindPopup('Manaus')
-    .openPopup();
 
 // Array com as coordenadas das estações de bombeiros
 const fireStations = [
@@ -21,9 +26,6 @@ const fireStations = [
     { coords: [-3.149301, -60.029792], name: '5º Grupamento de Bombeiros Militar', link: 'estacao5.html' }
 ];
 
-// Cria um array para armazenar os limites do mapa
-const bounds = [];
-
 // Cria um ícone personalizado para o caminhão de bombeiro
 const firetruckIcon = L.icon({
     iconUrl: 'img/bonb.png', // Substitua pelo caminho do seu ícone
@@ -32,110 +34,99 @@ const firetruckIcon = L.icon({
     popupAnchor: [0, -30] // Ponto de ancoragem do pop-up
 });
 
+// Função para abrir o pop-up com delay
+function openPopupWithDelay(marker, popupContent) {
+    marker.popupTimeout = setTimeout(function() {
+        marker.bindPopup(popupContent).openPopup();
+    }, 1); // Delay de 1ms para abrir o pop-up
+}
+
+// Função para fechar o pop-up com delay
+function closePopupWithDelay(marker) {
+    if (marker.popupTimeout) {
+        clearTimeout(marker.popupTimeout); // Limpa o timeout anterior se o mouse sair rapidamente
+    }
+    marker.popupTimeout = setTimeout(function() {
+        marker.closePopup();
+    }, 0); // Delay de 500ms para fechar o pop-up
+}
+
 // Adicionando os postos de bombeiros ao mapa
 fireStations.forEach((station) => {
     const { coords, name, link } = station;
     const marker = L.marker(coords, { icon: firetruckIcon }).addTo(map);
-    
-    // Cria um pop-up ao passar o mouse
-    const popupContent = `<strong>${name}</strong><br><a href="${link}" target="_blank">Mais informações</a>`;
-    
-    // Adiciona eventos de mouseover e mouseout
-    marker.on('mouseover', () => {
-        marker.bindPopup(popupContent).openPopup(); // Abre o pop-up
+
+    const popupContent = `<strong>${name}</strong><br><a href="${link}" target="_blank">Clique para mais informações</a>`;
+
+    // Abre o pop-up com delay ao passar o mouse
+    marker.on('mouseover', function() {
+        openPopupWithDelay(marker, popupContent);
     });
 
-    marker.on('mouseout', () => {
-        marker.closePopup(); // Fecha o pop-up
+    // Fecha o pop-up com delay ao tirar o mouse
+    marker.on('mouseout', function() {
+        closePopupWithDelay(marker);
     });
-    
-    // Adiciona o marcador aos limites
-    bounds.push(coords);
+
+    // Ao clicar no marcador, abre a página de informações
+    marker.on('click', function() {
+        window.location.href = link;
+    });
 });
 
-// Ajusta o mapa para incluir todos os postos
-map.fitBounds(bounds);
+// Lista de coordenadas dos focos de incêndio em Manaus
+const fireLocations = [
+    { latitude: -3.119, longitude: -60.021731 },
+    { latitude: -3.095, longitude: -60.028 },
+    { latitude: -3.125, longitude: -60.015 },
+    { latitude: -3.138, longitude: -60.010 },
+    { latitude: -3.100, longitude: -60.035 },
+    { latitude: -3.080, longitude: -60.020 },
+    { latitude: -3.090, longitude: -60.025 },
+    { latitude: -3.110, longitude: -60.040 }
+];
 
-// Função para obter dados climáticos da OpenWeatherMap API
-async function getWeatherData() {
-    const apiKey = 'c3f12f8ac06151bed960f019b2e21244'; // Substitua pela sua chave da OpenWeatherMap
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=Manaus,BR&appid=${apiKey}&units=metric&lang=pt_br`;
+// Função para adicionar os focos de incêndio ao mapa
+function addFireCircles() {
+    fireLocations.forEach(function(location) {
+        const fireCircle = L.circle([location.latitude, location.longitude], {
+            color: 'red',
+            fillColor: '#f03',
+            fillOpacity: 0.5,
+            radius: 150,  // Tamanho do círculo do foco de incêndio
+        }).addTo(map);
 
-    try {
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error(`Erro: ${response.status} - ${response.statusText}`);
-        }
-        const data = await response.json();
-        
-        const weatherIcon = document.getElementById('weather-icon');
-        
-        // Mapeia as condições climáticas para ícones
-        const iconMapping = {
-            "Clear": "img/clear.svg",
-            "Clouds": "img/clouds.svg",
-            "Rain": "img/rain.svg",
-            "Thunderstorm": "img/icons/storm.svg",
-            "Snow": "img/icons/snow.svg",
-            "Mist": "img/icons/cloudy.svg" // ou outro ícone que represente névoa
-        };
+        // Animação de pulsação para o círculo do incêndio
+        animateFireCircle(fireCircle);
 
-        // Define o ícone com base na condição climática
-        const condition = data.weather[0].main;
-        weatherIcon.src = iconMapping[condition] || "img/icons/default.svg"; // Use um ícone padrão se a condição não for encontrada
-        weatherIcon.style.display = 'block'; // Exibe o ícone
-
-        const weatherInfo = `
-            <strong>Cidade:</strong> ${data.name} <br>
-            <strong>Temperatura:</strong> ${data.main.temp} °C <br>
-            <strong>Clima:</strong> ${data.weather[0].description} <br>
-            <strong>Umidade:</strong> ${data.main.humidity}%
-        `;
-        document.getElementById('weather-info').innerHTML = weatherInfo;
-    } catch (error) {
-        document.getElementById('weather-info').innerHTML = `<span class="error">Erro ao carregar dados climáticos: ${error.message}</span>`;
-    }
+        // Adicionar popup com a descrição do foco de incêndio
+        fireCircle.bindPopup("Foco de Incêndio Detectado!").openPopup();
+    });
 }
 
-// Chamar a função de clima ao carregar a página
-getWeatherData();
+// Função de animação de pulsação do círculo
+function animateFireCircle(circle) {
+    let opacity = 0.5;
+    const maxOpacity = 0.8;
+    const minOpacity = 0.3;
+    const step = 0.02;
+    const interval = 100;
 
-// Função para obter dados de focos de incêndio em tempo real (usando NASA FIRMS API)
-async function getFireData() {
-    const token = 'eyJ0eXAiOiJKV1QiLCJvcmlnaW4iOiJFYXJ0aGRhdGEgTG9naW4iLCJzaWciOiJlZGxqd3RwdWJrZXlfb3BzIiwiYWxnIjoiUlMyNTYifQ.eyJ0eXBlIjoiVXNlciIsInVpZCI6Im1hcmlhYXA0cmVjaWRhIiwiZXhwIjoxNzM0ODk4MzExLCJpYXQiOjE3Mjk3MTQzMTEsImlzcyI6Imh0dHBzOi8vdXJzLmVhcnRoZGF0YS5uYXNhLmdvdiJ9.Nj_RgLziY704K-Q-svSbw8yqZhciabDAWyMRPWXs9si0Pjd6kM6y33tYzuj58XXiT2aK6J026xQNco-o2-wSkOuTGtcv33YbYeuzHXzg0AJtPO9FJ1G2e4NRzmhYnHsw5CctZ06fjQ3DMhIXvSkOxUc_resoDIkYTck15gdlomHxq-q6OYLdhhW-V7K3qyncb0mWgtXjKd50cDPcaUGAlOWACn8vmlawzgecZfc_4lERC2UtVxLuDV2WMUDzyoEQnAAPVRCpqgl_QOpt5PoHFV2FZLwo4JosDhA0c-RSVvoTq4p2EPVbImIHU4X_PiNJzzi_r1QbcwYpGmxdoWOiPQ'; // Substitua pelo seu token da NASA FIRMS
-    const fireApiUrl = `https://firms.modaps.eosdis.nasa.gov/api/country/csv/${token}/BRA/2024-10-01`; // Use 'BRA' e uma data válida
-
-    try {
-        const response = await fetch(fireApiUrl, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-
-        if (!response.ok) {
-            throw new Error(`Erro ao obter dados de incêndio: ${response.statusText}`);
+    const animationInterval = setInterval(function() {
+        if (opacity >= maxOpacity) {
+            opacity = minOpacity;
+        } else {
+            opacity += step;
         }
-
-        const fireData = await response.text(); // A API FIRMS pode retornar CSV
-        
-        // Se for CSV, você precisará processar os dados antes
-        const fires = processCsvData(fireData);
-
-        fires.forEach(fire => {
-            const { latitude, longitude } = fire;
-
-            // Adiciona marcadores dos focos de incêndio no mapa
-            L.circle([latitude, longitude], {
-                color: 'red',
-                fillColor: '#f03',
-                fillOpacity: 0.5,
-                radius: 500
-            }).addTo(map)
-            .bindPopup(`Foco de Incêndio detectado`);
-        });
-
-    } catch (error) {
-        console.error(`Erro ao carregar dados de incêndio: ${error}`);
-    }
+        circle.setStyle({ fillOpacity: opacity });
+    }, interval);
 }
+
+// Adiciona os círculos de focos de incêndio ao mapa
+addFireCircles();
+
+// Evitar que o mapa saia da área de Manaus ao permitir o movimento do mapa
+map.setMaxBounds([ 
+    [-3.230, -60.280], // Limite inferior esquerdo de Manaus
+    [-3.050, -59.900]  // Limite superior direito de Manaus
+]);

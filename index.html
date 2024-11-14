@@ -4,23 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GuardFire - Sistema para Bombeiros</title>
+    <link rel="stylesheet" href="incendio.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon"> <!-- Favicon -->
 </head>
 <body>
 
 <header>
+    <img src="img/logo.png" alt="Logo GuardFire" class="logo">
     <h1>GuardFire</h1>
     <p>Sistema Completo de Combate a Incêndios para Bombeiros</p>
 </header>
 
 <nav>
     <ul>
-        <li><a href="#monitoramento">Monitoramento</a></li>
-        <li><a href="#emergencias">Chamados de Emergência</a></li>
-        <li><a href="#relatorios">Relatórios</a></li>
-        <li><a href="#comunicacao">Comunicação</a></li>
-        <li><a href="#prevencao">Prevenção</a></li>
+        <li><a href="emergencias.html">Chamados de Emergência</a></li>
+        <li><a href="relatorio.html">Relatórios</a></li>
+        <li><a href="comunicacao.html">Comunicação</a></li>
+        <li><a href="prevencao.html">Prevenção</a></li>
     </ul>
 </nav>
 
@@ -29,19 +31,33 @@
 </section>
 
 <!-- Seção de Monitoramento com o Mapa -->
-<div class="map-container">
-    <section id="map" style="height: 400px;"></section> <!-- Adicionei uma altura para o mapa -->
-</div>
+<section id="monitoramento" class="map-container">
+    <div id="map"></div>
+</section>
 
 <!-- Seção de Depoimentos -->
-<section>
+<section class="depoimentos">
     <h2>Depoimentos</h2>
-    <blockquote>
-        "A equipe foi incrível e salvou muitas vidas durante o incêndio." - Bombeiro João
-    </blockquote>
-    <blockquote>
-        "A agilidade da resposta foi fundamental para conter o incêndio." - Bombeiro Maria
-    </blockquote>
+    
+    <div class="depoimento">
+        <img src="bombeiro1.jpg" alt="Bombeiro João">
+        <blockquote>
+            "A equipe foi incrível e salvou muitas vidas durante o incêndio."
+        </blockquote>
+        <footer>- Bombeiro João</footer>
+    </div>
+    
+    <div class="depoimento">
+        <img src="bombeiro2.jpg" alt="Bombeiro Maria">
+        <blockquote>
+            "A agilidade da resposta foi fundamental para conter o incêndio."
+        </blockquote>
+        <footer>- Bombeiro Maria</footer>
+    </div>
+    
+    <div class="mais-depoimentos">
+        <a href="#">Ver mais depoimentos</a>
+    </div>
 </section>
 
 <!-- Seção de Notícias e Atualizações -->

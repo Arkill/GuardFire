@@ -1,0 +1,28 @@
+/* Estilo para o círculo fixo de foco de incêndio */
+.fire-circle {
+    position: absolute; /* Fica fixado na posição */
+    border-radius: 50%;
+    background-color: rgba(255, 0, 0, 0.3); /* Cor inicial do círculo */
+    pointer-events: none; /* Não interfere na interação com o mapa */
+    animation: spreadColor 3s infinite; /* Animação de espalhamento */
+    transform-origin: center; /* Certifica que a animação ocorre a partir do centro */
+}
+
+/* Animação para espalhar a cor do círculo */
+@keyframes spreadColor {
+    0% {
+        transform: scale(1); /* Mantém o tamanho inicial */
+        background-color: rgba(255, 0, 0, 0.3); /* Cor intensa */
+        opacity: 0.8;
+    }
+    50% {
+        transform: scale(1.5); /* Expande o círculo */
+        background-color: rgba(255, 0, 0, 0.15); /* Cor mais suave */
+        opacity: 0.6;
+    }
+    100% {
+        transform: scale(2); /* Expande mais */
+        background-color: rgba(255, 0, 0, 0); /* Cor mais suave e transparente */
+        opacity: 0;
+    }
+}

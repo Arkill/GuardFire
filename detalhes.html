@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Relatório - GuardFire</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <img src="img/logo.png" alt="Logo GuardFire" class="logo">
+    <h1>GuardFire - Detalhes do Relatório</h1>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="index.html">Monitoramento</a></li>
+        <li><a href="emergencias.html">Chamados de Emergência</a></li>
+        <li><a href="comunicacao.html">Comunicação</a></li>
+        <li><a href="prevencao.html">Prevenção</a></li>
+    </ul>
+</nav>
+
+<section class="detalhes">
+    <h2>Relatório de Incêndio - ID: <span id="relatorio-id"></span></h2>
+    
+    <div id="informacoes-relatorio">
+        <p><strong>Data:</strong> <span id="data"></span></p>
+        <p><strong>Tipo de Incêndio:</strong> <span id="tipo-incendio"></span></p>
+        <p><strong>Status:</strong> <span id="status"></span></p>
+        <p><strong>Localização:</strong> <span id="localizacao"></span></p>
+        <p><strong>Descrição:</strong></p>
+        <p id="descricao"></p>
+    </div>
+    
+    <h3>Imagens</h3>
+    <div id="imagens">
+        <!-- Imagens do relatório -->
+    </div>
+    
+    <h3>Vídeo</h3>
+    <video controls id="video">
+        <source src="" type="video/mp4">
+        Seu navegador não suporta o formato de vídeo.
+    </video>
+</section>
+
+<footer>
+    <p>© 2024 GuardFire. Todos os direitos reservados.</p>
+</footer>
+
+<script src="detalhes.js"></script>
+</body>
+</html>
