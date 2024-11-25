@@ -1,0 +1,104 @@
+
+/* Cabeçalho */
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 0;
+    text-align: center;
+}
+
+/* Central de mensagens */
+.central-mensagens {
+    padding: 20px;
+    text-align: center;
+    background-color: #fff;
+    margin: 20px auto;
+    border-radius: 8px;
+    width: 80%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos do botão */
+button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Estilos do formulário */
+form {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+textarea {
+    padding: 10px;
+    width: 80%;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+input[type="file"] {
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Área das mensagens */
+.mensagens-container {
+    display: none;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.mensagens-container ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.mensagens-container li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.mensagens-container li:last-child {
+    border-bottom: none;
+}
+
+.mensagem-item img {
+    max-width: 200px;
+    margin-top: 10px;
+}
+
+/* Estilos do botão de Voltar */
+.voltar-btn {
+    padding: 10px 20px;
+    background-color: #f44336; 
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 20px 0;
+    display: block;
+    text-align: center;
+}
+
+.voltar-btn:hover {
+    background-color: #d32f2f;
+}

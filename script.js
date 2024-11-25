@@ -1,14 +1,14 @@
-// Inicialize o mapa com centro fixo em Manaus e zoom nível 14
+
 const map = L.map('map', {
-    center: [-3.119, -60.021731],  // Coordenadas de Manaus
-    zoom: 14, // Aumentando o nível de zoom para aproximar ainda mais de Manaus
-    scrollWheelZoom: true, // Permitir zoom com a roda do mouse
-    dragging: true, // Permitir o movimento do mapa
-    touchZoom: true, // Permitir zoom por toque
-    doubleClickZoom: true, // Permitir zoom por clique duplo
-    zoomControl: true, // Habilitar controles de zoom
-    maxZoom: 19, // Permitir até o nível máximo de zoom
-    minZoom: 12, // Não permitir zoom muito para fora de Manaus
+    center: [-3.119, -60.021731],  
+    zoom: 14, 
+    scrollWheelZoom: true, 
+    dragging: true, 
+    touchZoom: true, 
+    doubleClickZoom: true, 
+    zoomControl: true, 
+    maxZoom: 19, 
+    minZoom: 12, 
 });
 
 // Adicione o layer do OpenStreetMap
@@ -26,15 +26,13 @@ const fireStations = [
     { coords: [-3.149301, -60.029792], name: '5º Grupamento de Bombeiros Militar', link: 'estacao5.html' }
 ];
 
-// Cria um ícone personalizado para o caminhão de bombeiro
 const firetruckIcon = L.icon({
-    iconUrl: 'img/bonb.png', // Substitua pelo caminho do seu ícone
-    iconSize: [30, 30], // Tamanho do ícone
-    iconAnchor: [15, 30], // Ponto de ancoragem do ícone
-    popupAnchor: [0, -30] // Ponto de ancoragem do pop-up
+    iconUrl: 'img/bonb.png', 
+    iconSize: [30, 30], 
+    iconAnchor: [15, 30], 
+    popupAnchor: [0, -30] 
 });
 
-// Função para abrir o pop-up com delay
 function openPopupWithDelay(marker, popupContent) {
     marker.popupTimeout = setTimeout(function() {
         marker.bindPopup(popupContent).openPopup();
@@ -93,18 +91,15 @@ function addFireCircles() {
             color: 'red',
             fillColor: '#f03',
             fillOpacity: 0.5,
-            radius: 150,  // Tamanho do círculo do foco de incêndio
+            radius: 150, 
         }).addTo(map);
 
-        // Animação de pulsação para o círculo do incêndio
         animateFireCircle(fireCircle);
 
-        // Adicionar popup com a descrição do foco de incêndio
         fireCircle.bindPopup("Foco de Incêndio Detectado!").openPopup();
     });
 }
 
-// Função de animação de pulsação do círculo
 function animateFireCircle(circle) {
     let opacity = 0.5;
     const maxOpacity = 0.8;
@@ -122,11 +117,10 @@ function animateFireCircle(circle) {
     }, interval);
 }
 
-// Adiciona os círculos de focos de incêndio ao mapa
 addFireCircles();
 
-// Evitar que o mapa saia da área de Manaus ao permitir o movimento do mapa
 map.setMaxBounds([ 
-    [-3.230, -60.280], // Limite inferior esquerdo de Manaus
-    [-3.050, -59.900]  // Limite superior direito de Manaus
+    [-3.230, -60.280], 
+    [-3.050, -59.900]  
 ]);
+

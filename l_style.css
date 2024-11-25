@@ -9,7 +9,7 @@ body{
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: #a90202;
+    background: linear-gradient(45deg, #d9534f, #171717);
 }
 .container{
     width: 100%;
@@ -43,7 +43,7 @@ hr{
     border-top: 2px solid #632e13;
 }
 .pic{
-    background-color:#e32417;
+    background-color:#ae2c22;
     border-top-right-radius: 2rem;
     border-bottom-right-radius: 2rem;
 }

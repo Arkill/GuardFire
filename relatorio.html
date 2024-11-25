@@ -4,14 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Relatórios - GuardFire</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="rel.css">
 </head>
 <body>
     <header>
-        <div class="header-container">
             <div class="logo">
-                <img src="logo.png" alt="Logo GuardFire">
+                <img src="img/logo.png" alt="Logo GuardFire">
             </div>
             <div class="header-info">
                 <h1>Relatórios</h1>
@@ -22,10 +21,9 @@
 
     <nav>
         <ul>
-            <li><a href="index.html">Monitoramento</a></li>
-            <li><a href="#">Chamados de Emergência</a></li>
-            <li><a href="#">Prevenção</a></li>
-            <li><a href="#">Comunicação</a></li>
+            <li><a href="index.php">Monitoramento</a></li>
+            <li><a href="emergencias.html">Chamados de Emergência</a></li>
+            <li><a href="comunicacao.html">Comunicação</a></li>
         </ul>
     </nav>
 
@@ -76,9 +74,22 @@
             </div>
         </section>
     </main>
-
     <footer>
-        <p>&copy; 2024 GuardFire. Todos os direitos reservados.</p>
+        <div class="footer-content">
+            <p>© 2024 GuardFire. Todos os direitos reservados.</p>
+           <!-- Link de e-mail com novo estilo -->
+    <p>
+        <a href="mailto:contato@guardfire.com" class="footer-email">contato@guardfire.com</a>
+    </p>
+    
+    <!-- Redes sociais com links personalizados -->
+    <ul class="social-links">
+        <li><a href="https://facebook.com" target="_blank" class="facebook-link"><img src="img/face.svg" alt="Facebook"></a></li>
+        <li><a href="https://twitter.com" target="_blank" class="twitter-link"><img src="img/x.svg" alt="Twitter"></a></li>
+        <li><a href="https://instagram.com" target="_blank" class="instagram-link"><img src="img/insta.svg" alt="Instagram"></a></li>
+    </ul>
+        </div>
     </footer>
+        
 </body>
 </html>

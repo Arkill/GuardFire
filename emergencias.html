@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GuardFire - Chamados de Emergência</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="s_emer.css">
 </head>
+
 <body>
 
 <header>
@@ -16,21 +19,98 @@
 
 <nav>
     <ul>
-        <li><a href="index.html">Monitoramento</a></li>
+        <li><a href="index.php">Monitoramento</a></li>
         <li><a href="relatorio.html">Relatórios</a></li>
         <li><a href="comunicacao.html">Comunicação</a></li>
-        <li><a href="prevencao.html">Prevenção</a></li>
     </ul>
 </nav>
 
-<section class="content">
-    <h2>Chamados de Emergência</h2>
-    <p>Acompanhe em tempo real os chamados de emergência e os focos de incêndio identificados.</p>
+<section class="search-bar">
+    <input type="text" placeholder="Pesquisar chamados..." id="search">
+    <button type="button">Pesquisar</button>
+</section>
+
+<section class="chamados">
+    <h3>Lista de Chamados</h3>
+    <table id="chamadosTabela">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Tipo</th>
+                <th>Status</th>
+                <th>Localização</th>
+                <th>Ação</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Chamados serão carregados aqui -->
+        </tbody>
+    </table>
 </section>
 
 <footer>
-    <p>© 2024 GuardFire. Todos os direitos reservados.</p>
+    <div class="footer-content">
+        <p>© 2024 GuardFire. Todos os direitos reservados.</p>
+        <p>
+            <a href="mailto:contato@guardfire.com">contato@guardfire.com</a>
+        </p>
+        <ul class="social-links">
+            <li><a href="#"><img src="img/face.svg" alt="Facebook"></a></li>
+            <li><a href="#"><img src="img/x.svg" alt="Twitter"></a></li>
+            <li><a href="#"><img src="img/insta.svg" alt="Instagram"></a></li>
+        </ul>
+    </div>
 </footer>
 
+<script>
+    // Dados de exemplo para os chamados
+    const chamados = [
+        { id: 1, tipo: 'Incêndio', status: 'Em andamento', localizacao: 'Zona Sul' },
+        { id: 2, tipo: 'Acidente', status: 'Resolvido', localizacao: 'Centro' },
+        { id: 3, tipo: 'Incêndio', status: 'Aguardando', localizacao: 'Zona Norte' }
+    ];
+
+    // Função para carregar os chamados na tabela
+    function carregarTabela() {
+        const tabelaBody = document.querySelector('#chamadosTabela tbody');
+        tabelaBody.innerHTML = ''; // Limpar a tabela antes de carregar novos dados
+
+        chamados.forEach(chamado => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${chamado.id}</td>
+                <td>${chamado.tipo}</td>
+                <td>${chamado.status}</td>
+                <td>${chamado.localizacao}</td>
+                <td><button>Visualizar</button></td>
+            `;
+            tabelaBody.appendChild(tr);
+        });
+    }
+
+    // Chama a função para carregar os dados ao carregar a página
+    document.addEventListener('DOMContentLoaded', function () {
+        carregarTabela();
+    });
+
+    // Exemplo de notificação de novos chamados
+    function notificarNovoChamado() {
+        const notification = document.createElement('div');
+        notification.classList.add('notification');
+        notification.innerText = "Novo chamado de emergência registrado!";
+        document.body.appendChild(notification);
+
+        setTimeout(() => {
+            notification.remove();
+        }, 3000); // Remove a notificação após 3 segundos
+    }
+
+    // Exibir a notificação de novo chamado após carregar a página
+    document.addEventListener('DOMContentLoaded', function () {
+        notificarNovoChamado();
+    });
+</script>
+
 </body>
+
 </html>

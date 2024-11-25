@@ -5,6 +5,47 @@
     box-sizing: border-box;
 }
 
+/* Estilo do perfil do usuário */
+
+.user-profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #222;
+    padding: 10px 20px;
+    color: white;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.user-profile p {
+    margin: 0;
+    font-size: 16px;
+    text-align: center;
+    flex: 1;
+}
+
+.logout-button {
+    background-color: #d9534f;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+
+.logout-button:hover {
+    background-color: #ab3c38;
+}
+
+.logout-button {
+    margin-top: 50px;
+    margin-right: 0px;
+}
+
+
 /* Configurações gerais */
 html, body {
     font-family: 'Arial', sans-serif;
@@ -17,9 +58,32 @@ html, body {
 
 /* Cabeçalho */
 header {
-    background: linear-gradient(45deg, #d9534f, #171717); /* Alteração para cor mais quente */
-    padding: 50px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(45deg, #d9534f, #171717);
+    padding: 20px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    color: white;
+}
+
+header .logo {
+    width: 150px;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    font-size: 3.5rem;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 1.2rem;
+    color: #a8a29e;
+    text-align: center;
+    margin-top: 10px;
 }
 
 .header-container {
@@ -72,7 +136,7 @@ nav a {
 }
 
 nav a:hover {
-    color: #d9534f; /* Alterado para vermelho no hover */
+    color: #d9534f; 
     transform: translateY(-5px);
 }
 
@@ -89,6 +153,53 @@ nav a::after {
 
 nav a:hover::after {
     width: 100%;
+}
+
+.content {
+    padding: 40px 20px;
+    text-align: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.content p {
+    font-size: 1.2rem;
+}
+
+/* Barra de pesquisa */
+.search-bar {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.search-bar input {
+    padding: 12px;
+    font-size: 1rem;
+    width: 60%;
+    max-width: 500px;
+    margin-right: 10px;
+    border: 2px solid #d9534f;
+    border-radius: 4px;
+}
+
+.search-bar button {
+    padding: 12px 20px;
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-bar button:hover {
+    background-color: #ae3f3b;
 }
 
 /* Seção Principal de Relatórios */
@@ -112,7 +223,7 @@ main {
     height: 500px;
     border-radius: 15px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    border: 2px solid #00bfa6;
+    border: 2px solid #d9534f;
     transition: transform 0.3s ease-in-out;
     transform: scale(1);
 }
@@ -179,7 +290,7 @@ section h2 {
 }
 
 .tool h3 {
-    color: #00bfa6;
+    color: #d9534f;
     font-size: 1.8rem;
 }
 
@@ -189,18 +300,87 @@ section h2 {
     color: #555;
 }
 
-/* Rodapé */
+/* Rodapé geral */
 footer {
-    background-color: #171717;
+    background-color: #000000;
     color: white;
+    padding: 40px 20px;
     text-align: center;
-    padding: 40px 0;
     box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
 }
 
-footer p {
-    font-size: 1.2rem;
-    margin: 10px 0;
+footer a:hover {
+    color: #d9534f; /* Verde claro ao passar o mouse */
+}
+
+/* Links do rodapé */
+footer a {
+    color: #d9534f; 
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: #f37470; 
+}
+
+/* Estilo para o link de e-mail */
+footer .footer-email {
+    color: #d9534f; 
+    text-decoration: none;
+    font-weight: bold; 
+}
+
+footer .footer-email:hover {
+    color:#d9534f;
+    text-decoration: underline; 
+}
+
+/* Alinhar os ícones sociais na horizontal */
+footer .social-links {
+    display: flex; 
+    justify-content: center; 
+    padding: 0; 
+    list-style-type: none; 
+    margin: 20px 0 0; 
+}
+
+/* Estilo para os ícones de redes sociais */
+footer .social-links li {
+    margin: 0 15px; 
+}
+
+/* Estilo para os links dos ícones sociais */
+footer .social-links li a {
+    display: inline-block;
+}
+
+/* Ajustando o tamanho e a animação dos ícones */
+footer .social-links li a img {
+    width: 40px;
+    height: 40px;
+    transition: transform 0.3s ease; 
+}
+
+footer .social-links li a:hover img {
+    transform: scale(1.2); 
+}
+
+/* Efeito de aumento ao passar o mouse (opcional) */
+footer .social-links li a:hover img {
+    transform: scale(1.1);
+}
+
+/* Ícones sociais */
+.social-links a img {
+    filter: brightness(0) invert(1); 
+    transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.social-links a:hover img {
+    filter: brightness(1) hue-rotate(180deg); 
+    transform: scale(1.2); 
 }
 
 /* Seção de clima */

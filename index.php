@@ -1,3 +1,14 @@
+<?php
+session_start();
+
+// Verificar se o usuário está logado
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
+    header('Location: login.php'); // Redireciona para o login se não estiver logado
+    exit();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -15,6 +26,14 @@
     <img src="img/logo.png" alt="Logo GuardFire" class="logo">
     <h1>GuardFire</h1>
     <p>Sistema Completo de Combate a Incêndios para Bombeiros</p>
+
+    <!-- Exibindo informações do usuário -->
+    <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true): ?>
+        <div class="user-profile">
+            <p>Bem-vindo, <?php echo htmlspecialchars($_SESSION['username']); ?>!</p>
+            <a href="logout.php" class="logout-button">Sair</a>
+        </div>
+    <?php endif; ?>
 </header>
 
 <nav>
@@ -22,7 +41,6 @@
         <li><a href="emergencias.html">Chamados de Emergência</a></li>
         <li><a href="relatorio.html">Relatórios</a></li>
         <li><a href="comunicacao.html">Comunicação</a></li>
-        <li><a href="prevencao.html">Prevenção</a></li>
     </ul>
 </nav>
 
@@ -38,9 +56,8 @@
 <!-- Seção de Depoimentos -->
 <section class="depoimentos">
     <h2>Depoimentos</h2>
-    
     <div class="depoimento">
-        <img src="bombeiro1.jpg" alt="Bombeiro João">
+        <img src="img/realistic_male_firefighter_profile_picture.png" alt="Bombeiro João">
         <blockquote>
             "A equipe foi incrível e salvou muitas vidas durante o incêndio."
         </blockquote>
@@ -48,7 +65,7 @@
     </div>
     
     <div class="depoimento">
-        <img src="bombeiro2.jpg" alt="Bombeiro Maria">
+        <img src="img/female_firefighter_profile_picture.png" alt="Bombeiro Maria">
         <blockquote>
             "A agilidade da resposta foi fundamental para conter o incêndio."
         </blockquote>
@@ -91,14 +108,27 @@
 
 <!-- Rodapé -->
 <footer>
-    <p>© 2024 GuardFire. Todos os direitos reservados.</p>
-    <p><a href="mailto:contato@guardfire.com">contato@guardfire.com</a></p>
+    <div class="footer-content">
+        <p>© 2024 GuardFire. Todos os direitos reservados.</p>
+        <!-- Link de e-mail com novo estilo -->
+        <p>
+            <a href="mailto:contato@guardfire.com" class="footer-email">contato@guardfire.com</a>
+        </p>
+
+        <!-- Redes sociais com links personalizados -->
+        <ul class="social-links">
+            <li><a href="https://facebook.com" target="_blank" class="facebook-link"><img src="img/face.svg" alt="Facebook"></a></li>
+            <li><a href="https://twitter.com" target="_blank" class="twitter-link"><img src="img/x.svg" alt="Twitter"></a></li>
+            <li><a href="https://instagram.com" target="_blank" class="instagram-link"><img src="img/insta.svg" alt="Instagram"></a></li>
+        </ul>
+    </div>
 </footer>
 
 <!-- Scripts -->
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <script src="mapa_script.js"></script>
 <script src="script.js"></script>
+<script src="script_ic.js"></script>
 
 </body>
 </html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acessar Central de Mensagens</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style_ms.css">
+    </head>
+<body>
+    <header>
+        <h1>Bem-vinda à Central de Mensagens</h1>
+        <button id="voltar-btn" class="voltar-btn">Voltar</button>
+    </header>
+
+    <main>
+        <section class="central-mensagens">
+            <button id="acessar-mensagens-btn">Acessar Central de Mensagens</button>
+            <div id="mensagens-container" class="mensagens-container">
+                <ul id="mensagens-list">
+                    <!-- Mensagens serão exibidas aqui -->
+                </ul>
+            </div>
+            <form id="mensagem-form" action="#" method="POST" enctype="multipart/form-data">
+                <label for="mensagem">Digite sua mensagem:</label>
+                <textarea id="mensagem" name="mensagem" rows="4" placeholder="Descreva o ocorrido..." required></textarea>
+
+                <label for="foto">Envie uma foto (opcional):</label>
+                <input type="file" id="foto" name="foto" accept="image/*">
+
+                <button type="submit">Enviar Mensagem</button>
+            </form>
+        </section>
+    </main>
+
+    <script src="script_ms.js"></script>
+</body>
+</html>
