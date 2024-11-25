@@ -24,6 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Canal para Denúncias</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="style_dn.css">
+    <link rel="icon" href="img/logo.png" type="image/x-icon">
 </head>
 <body>
     <header>
